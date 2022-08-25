@@ -1,0 +1,137 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url(/assets/home.png);
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    
+}
+
+.ancients-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 50px;
+}
+
+.card {
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    width: 200px;
+    height: 260px;
+}
+
+.ancient {
+    cursor: pointer;
+}
+
+.ancient:hover {
+    border: 2px solid #00ff00;
+}
+
+.azathoth {
+    background-image: url(/assets/Ancients/Azathoth.png);
+}
+
+.cthulthu {
+    background-image: url(/assets/Ancients/Cthulthu.png);
+}
+
+.jog-sothoth {
+    background-image: url(/assets/Ancients/IogSothoth.png);
+}
+
+.shub-niggurath {
+    background-image: url(/assets/Ancients/ShubNiggurath.png);
+}
+
+.game-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+}
+
+.dificulty-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 200px;
+    height: 300px;
+}
+
+.dificulty {
+    width: 120px;
+    color: #ffffff;
+    border-color: #ff0000;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.dificulty:hover {
+    background-color: #ff0000;
+}
+
+.shuffle {
+    width: 120px;
+    margin-top: 50px;
+    color: #4d1919;
+    background-color: #b55e5e;
+    cursor: pointer;
+} 
+
+.cards-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 200px;
+    padding-top: 20px;
+    
+}
+
+.deck {
+    background-image: url(/assets/mythicCardBackground.png);
+    cursor: pointer;
+}
+
+.deck:hover {
+    border: 2px solid #a20e0e;
+}
+
+.current-card {
+    margin-top: 10px;
+    background-image: url(/assets/MythicCards/blue/blue1.png);
+}
+
+.counter-container {
+    width: 200px;
+    text-align: center;
+    color: #ffffff;
+}
+
+.counter-item {
+    display: flex;
+    justify-content: center;
+    
+}
+
+.counter {
+    padding-top: 5px;
+    width: 30px;
+    height: 30px;
+    margin: 5px;
+    border-radius: 50%;
+    color: #000000;
+}
+
+.green {
+    background-color: #00ff00;
+}
+
+.red {
+    background-color: #ff0000;
+}
+
+.blue {
+    background-color: #0000ff;
+}
