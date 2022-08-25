@@ -30,6 +30,10 @@ body {
     border: 2px solid #00ff00;
 }
 
+.ancient-active {
+    border: 2px solid #ff0000;
+}
+
 .game-container {
     display: flex;
     justify-content: space-around;
@@ -84,7 +88,6 @@ body {
 
 .current-card {
     margin-top: 10px;
-    background-image: url(./assets/MythicCards/blue/blue1.png);
 }
 
 .counter-container {
@@ -112,8 +115,8 @@ body {
     background-color: #00ff00;
 }
 
-.red {
-    background-color: #ff0000;
+.brown {
+    background-color: #a52a2a;
 }
 
 .blue {
