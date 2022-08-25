@@ -3,7 +3,7 @@
 }
 
 body {
-    background-image: url(/assets/home.png);
+    background-image: url(./assets/home.png);
     background-repeat: no-repeat;
     background-size: 100% auto;
     
@@ -31,19 +31,19 @@ body {
 }
 
 .azathoth {
-    background-image: url(/assets/Ancients/Azathoth.png);
+    background-image: url(./assets/Ancients/Azathoth.png);
 }
 
 .cthulthu {
-    background-image: url(/assets/Ancients/Cthulthu.png);
+    background-image: url(./assets/Ancients/Cthulthu.png);
 }
 
 .jog-sothoth {
-    background-image: url(/assets/Ancients/IogSothoth.png);
+    background-image: url(./assets/Ancients/IogSothoth.png);
 }
 
 .shub-niggurath {
-    background-image: url(/assets/Ancients/ShubNiggurath.png);
+    background-image: url(./assets/Ancients/ShubNiggurath.png);
 }
 
 .game-container {
@@ -90,7 +90,7 @@ body {
 }
 
 .deck {
-    background-image: url(/assets/mythicCardBackground.png);
+    background-image: url(./assets/mythicCardBackground.png);
     cursor: pointer;
 }
 
@@ -100,7 +100,7 @@ body {
 
 .current-card {
     margin-top: 10px;
-    background-image: url(/assets/MythicCards/blue/blue1.png);
+    background-image: url(./assets/MythicCards/blue/blue1.png);
 }
 
 .counter-container {
