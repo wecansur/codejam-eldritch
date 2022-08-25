@@ -30,22 +30,6 @@ body {
     border: 2px solid #00ff00;
 }
 
-.azathoth {
-    background-image: url(./assets/Ancients/Azathoth.png);
-}
-
-.cthulthu {
-    background-image: url(./assets/Ancients/Cthulthu.png);
-}
-
-.jog-sothoth {
-    background-image: url(./assets/Ancients/IogSothoth.png);
-}
-
-.shub-niggurath {
-    background-image: url(./assets/Ancients/ShubNiggurath.png);
-}
-
 .game-container {
     display: flex;
     justify-content: space-around;
