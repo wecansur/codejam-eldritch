@@ -14,6 +14,10 @@ cthulthu.style.backgroundImage = `url(${ancientsData[1].cardFace})`;
 iogSothoth.style.backgroundImage = `url(${ancientsData[2].cardFace})`;
 shubNiggurath.style.backgroundImage = `url(${ancientsData[3].cardFace})`;
 
+const currentCard = document.querySelector('.current-card');
+
+const firstStageStack = [];
+
 const getStackByAncient = (ancientNum) => {
     
     const cardsNumber = [
@@ -33,10 +37,34 @@ const getStackByAncient = (ancientNum) => {
             blue: ancientsData[ancientNum].thirdStage.blueCards
         }
     ]
-    
-    const firstStageStack = [];
 
+    const getRandomNum = (min, max) => {
+        const minN = Math.ceil(min);
+        const maxN = Math.floor(max);
+        return Math.floor(Math.random() * (maxN - minN + 1)) + minN;
+    }
+
+    const getCards = (cardsData, color) => {
+        if (cardsNumber[0][color] !== 0) {
+            let counter = 1;
+            while (counter <= cardsNumber[0][color]) {
+                const randomCard = [];
+                cardsData.map((item, index, array) => {
+                    randomCard.push(array[getRandomNum(0, cardsData.length - 1)]);
+                })
     
+                if (!firstStageStack.includes(randomCard)) {
+                    firstStageStack.push(randomCard[0])
+                    counter++;
+                }
+            }
+        }
+    }
+
+    getCards(greenCardsData, 'green');
+    getCards(brownCardsData, 'brown');
+    getCards(blueCardsData, 'blue');
+    console.log(firstStageStack);
 }
 
 const ancientsContainer = document.querySelector('.ancients-container');
