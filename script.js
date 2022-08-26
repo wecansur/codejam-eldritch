@@ -16,6 +16,22 @@ shubNiggurath.style.backgroundImage = `url(${ancientsData[3].cardFace})`;
 
 const currentCard = document.querySelector('.current-card');
 
+const getRandomNum = (min, max) => {
+    const minN = Math.ceil(min);
+    const maxN = Math.floor(max);
+    return Math.floor(Math.random() * (maxN - minN + 1)) + minN;
+}
+
+const shuffleStack = (array) => {
+    for (let i = array.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1));
+        const temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+    return array; 
+}
+
 const firstStageStack = [];
 
 const getStackByAncient = (ancientNum) => {
@@ -36,13 +52,7 @@ const getStackByAncient = (ancientNum) => {
             brown: ancientsData[ancientNum].thirdStage.brownCards,
             blue: ancientsData[ancientNum].thirdStage.blueCards
         }
-    ]
-
-    const getRandomNum = (min, max) => {
-        const minN = Math.ceil(min);
-        const maxN = Math.floor(max);
-        return Math.floor(Math.random() * (maxN - minN + 1)) + minN;
-    }
+    ]   
 
     const getCards = (cardsData, color) => {
         if (cardsNumber[0][color] !== 0) {
@@ -64,8 +74,11 @@ const getStackByAncient = (ancientNum) => {
     getCards(greenCardsData, 'green');
     getCards(brownCardsData, 'brown');
     getCards(blueCardsData, 'blue');
-    console.log(firstStageStack);
+
+    shuffleStack(firstStageStack);
 }
+
+
 
 const ancientsContainer = document.querySelector('.ancients-container');
 
@@ -78,7 +91,8 @@ ancientsContainer.addEventListener('click', (event) => {
 
         event.target.classList.add('ancient-active');
         
-        getStackByAncient(event.target.id)
+        getStackByAncient(event.target.id);       
     }
 
 })
+   
