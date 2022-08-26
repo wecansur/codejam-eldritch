@@ -33,6 +33,8 @@ const shuffleStack = (array) => {
 }
 
 const firstStageStack = [];
+const secondStageStack = [];
+const thirdStageStack = [];
 
 const getStackByAncient = (ancientNum) => {
     
@@ -54,28 +56,41 @@ const getStackByAncient = (ancientNum) => {
         }
     ]   
 
-    const getCards = (cardsData, color) => {
-        if (cardsNumber[0][color] !== 0) {
+    const getCards = (cardsData, color, stageStack, stageNum) => {
+        if (cardsNumber[stageNum][color] !== 0) {
             let counter = 1;
-            while (counter <= cardsNumber[0][color]) {
+            while (counter <= cardsNumber[stageNum][color]) {
                 const randomCard = [];
                 cardsData.map((item, index, array) => {
                     randomCard.push(array[getRandomNum(0, cardsData.length - 1)]);
                 })
     
-                if (!firstStageStack.includes(randomCard)) {
-                    firstStageStack.push(randomCard[0])
+                if (!(firstStageStack.includes(randomCard[0])) && !(secondStageStack.includes(randomCard[0])) && !(thirdStageStack.includes(randomCard[0]))) {
+                    stageStack.push(randomCard[0]);
                     counter++;
                 }
             }
         }
     }
 
-    getCards(greenCardsData, 'green');
-    getCards(brownCardsData, 'brown');
-    getCards(blueCardsData, 'blue');
-
+    getCards(greenCardsData, 'green', firstStageStack, 0);
+    getCards(brownCardsData, 'brown', firstStageStack, 0);
+    getCards(blueCardsData, 'blue', firstStageStack, 0);
     shuffleStack(firstStageStack);
+    
+    getCards(greenCardsData, 'green', secondStageStack, 1);
+    getCards(brownCardsData, 'brown', secondStageStack, 1);
+    getCards(blueCardsData, 'blue', secondStageStack, 1);
+    shuffleStack(secondStageStack);
+
+    getCards(greenCardsData, 'green', thirdStageStack, 2);
+    getCards(brownCardsData, 'brown', thirdStageStack, 2);
+    getCards(blueCardsData, 'blue', thirdStageStack, 2);
+    shuffleStack(thirdStageStack);
+
+    console.log(firstStageStack);
+    console.log(secondStageStack);
+    console.log(thirdStageStack);
 }
 
 
