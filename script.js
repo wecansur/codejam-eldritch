@@ -1,5 +1,9 @@
 import ancientsData from './data/ancients.js';
 
+import greenCardsData from './data/mythicCards/green/index.js';
+import brownCardsData from './data/mythicCards/brown/index.js';
+import blueCardsData from './data/mythicCards/blue/index.js';
+
 const azathoth = document.getElementById('0');
 const cthulthu = document.getElementById('1');
 const iogSothoth = document.getElementById('2');
@@ -11,8 +15,7 @@ iogSothoth.style.backgroundImage = `url(${ancientsData[2].cardFace})`;
 shubNiggurath.style.backgroundImage = `url(${ancientsData[3].cardFace})`;
 
 const getStackByAncient = (ancientNum) => {
-    const stack = [];
-
+    
     const cardsNumber = [
         {
             green: ancientsData[ancientNum].firstStage.greenCards,
@@ -30,7 +33,10 @@ const getStackByAncient = (ancientNum) => {
             blue: ancientsData[ancientNum].thirdStage.blueCards
         }
     ]
-    console.log(cardsNumber);
+    
+    const firstStageStack = [];
+
+    
 }
 
 const ancientsContainer = document.querySelector('.ancients-container');
