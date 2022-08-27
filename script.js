@@ -14,8 +14,6 @@ cthulthu.style.backgroundImage = `url(${ancientsData[1].cardFace})`;
 iogSothoth.style.backgroundImage = `url(${ancientsData[2].cardFace})`;
 shubNiggurath.style.backgroundImage = `url(${ancientsData[3].cardFace})`;
 
-const currentCard = document.querySelector('.current-card');
-
 const getRandomNum = (min, max) => {
     const minN = Math.ceil(min);
     const maxN = Math.floor(max);
@@ -57,7 +55,7 @@ const getCardsNumberByAncient = (ancientNum) => {
     });  
 }
 
-const getStackByDificulty = (cardsData, color, stageStack, stageNum) => {
+const getStackByDifficulty = (cardsData, color, stageStack, stageNum) => {
     if (cardsNumber[stageNum][color] !== 0) {
         let counter = 1;
         while (counter <= cardsNumber[stageNum][color]) {
@@ -74,44 +72,52 @@ const getStackByDificulty = (cardsData, color, stageStack, stageNum) => {
     }
 }
 
-const ancientsContainer = document.querySelector('.ancients-container');
+const pickAncient = document.querySelector('.pick-ancient');
+const currentAncient = document.querySelector('.current-ancient');
+const gameContainer = document.querySelector('.game-container');
 
-ancientsContainer.addEventListener('click', (event) => {
+pickAncient.addEventListener('click', (event) => {
     if (event.target.className === 'card ancient') {
-        azathoth.classList.remove('ancient-active');
-        cthulthu.classList.remove('ancient-active');
-        iogSothoth.classList.remove('ancient-active');
-        shubNiggurath.classList.remove('ancient-active');
-
-        event.target.classList.add('ancient-active');
+        pickAncient.classList.add('inactive');
+        currentAncient.classList.remove('inactive');
+        currentAncient.style.backgroundImage = `url(${ancientsData[event.target.id].cardFace})`;
+        gameContainer.classList.remove('inactive');
         
         getCardsNumberByAncient(event.target.id);
-        console.log(cardsNumber)       
+        console.log(cardsNumber);       
     }
-
 })
 
 const difficultyContainer = document.querySelector('.difficulty-container');
 
+const shuffleButton = document.querySelector('.shuffle');
+
 difficultyContainer.addEventListener('click', (event) => {
     if(event.target.className === 'difficulty normal') {
         event.target.classList.add('difficulty-active');
-        getStackByDificulty(greenCardsData, 'green', firstStageStack, 0);
-        getStackByDificulty(brownCardsData, 'brown', firstStageStack, 0);
-        getStackByDificulty(blueCardsData, 'blue', firstStageStack, 0);
+        shuffleButton.classList.remove('inactive');
+
+        getStackByDifficulty(greenCardsData, 'green', firstStageStack, 0);
+        getStackByDifficulty(brownCardsData, 'brown', firstStageStack, 0);
+        getStackByDifficulty(blueCardsData, 'blue', firstStageStack, 0);
         
-        getStackByDificulty(greenCardsData, 'green', secondStageStack, 1);
-        getStackByDificulty(brownCardsData, 'brown', secondStageStack, 1);
-        getStackByDificulty(blueCardsData, 'blue', secondStageStack, 1);
+        getStackByDifficulty(greenCardsData, 'green', secondStageStack, 1);
+        getStackByDifficulty(brownCardsData, 'brown', secondStageStack, 1);
+        getStackByDifficulty(blueCardsData, 'blue', secondStageStack, 1);
        
-        getStackByDificulty(greenCardsData, 'green', thirdStageStack, 2);
-        getStackByDificulty(brownCardsData, 'brown', thirdStageStack, 2);
-        getStackByDificulty(blueCardsData, 'blue', thirdStageStack, 2);
+        getStackByDifficulty(greenCardsData, 'green', thirdStageStack, 2);
+        getStackByDifficulty(brownCardsData, 'brown', thirdStageStack, 2);
+        getStackByDifficulty(blueCardsData, 'blue', thirdStageStack, 2);
     }
 });
 
-const shuffleButton = document.querySelector('.shuffle');
+const cardsContainer = document.querySelector('.cards-container');
+const counterContainer = document.querySelector('.counter-container');
+
 shuffleButton.addEventListener('click', () => {
+    cardsContainer.classList.remove('inactive');
+    counterContainer.classList.remove('inactive');
+
     shuffleStack(firstStageStack);
     shuffleStack(secondStageStack);
     shuffleStack(thirdStageStack);
@@ -119,3 +125,5 @@ shuffleButton.addEventListener('click', () => {
     console.log(secondStageStack);
     console.log(thirdStageStack);
 })
+
+const currentCard = document.querySelector('.current-card');

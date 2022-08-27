@@ -9,7 +9,11 @@ body {
     
 }
 
-.ancients-container {
+.current-ancient {
+    margin: 50px auto 0 auto;
+}
+
+.pick-ancient{
     display: flex;
     justify-content: space-around;
     margin-top: 50px;
@@ -27,10 +31,6 @@ body {
 }
 
 .ancient:hover {
-    border: 2px solid #00ff00;
-}
-
-.ancient-active {
     border: 2px solid #ff0000;
 }
 
@@ -43,12 +43,14 @@ body {
 .buttons-container {
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 .difficulty-container {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    align-items: center;
     width: 200px;
     height: 300px;
 }
@@ -130,4 +132,8 @@ body {
 
 .blue {
     background-color: #0000ff;
+}
+
+.inactive {
+    display: none;
 }
