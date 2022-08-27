@@ -120,6 +120,27 @@ function isCardNotHard(item) {
     }
 }
 
+const getHardStack = (cardsData, color, stageStack, stageNum) => {
+    function isCardNotEasy(item) {
+        return item.difficulty !== 'easy' ? true : false;
+    }
+        const hardCardData = cardsData.filter(isCardNotEasy)
+        if (cardsNumber[stageNum][color] !== 0) {
+            let counter = 1;
+            while (counter <= cardsNumber[stageNum][color]) {
+                const randomCard = [];
+                hardCardData.map((item, index, array) => {
+                    randomCard.push(array[getRandomNum(0, hardCardData.length - 1)]);
+                })
+    
+                if (!(firstStageStack.includes(randomCard[0])) && !(secondStageStack.includes(randomCard[0])) && !(thirdStageStack.includes(randomCard[0]))) {
+                    stageStack.push(randomCard[0]);
+                    counter++;
+                }
+            }
+        }
+    }
+
 const getFullStack = (stack1, stack2, stack3 ) => {
     const temp = stack3.concat(stack2);
     const result = temp.concat(stack1);
@@ -177,6 +198,21 @@ difficultyContainer.addEventListener('click', (event) => {
         getEasyStack(greenCardsData, 'green', thirdStageStack, 2);
         getEasyStack(brownCardsData, 'brown', thirdStageStack, 2);
         getEasyStack(blueCardsData, 'blue', thirdStageStack, 2);
+    } else if (event.target.className === 'difficulty hard') {
+        event.target.classList.add('difficulty-active');
+        shuffleButton.classList.remove('inactive');
+
+        getHardStack(greenCardsData, 'green', firstStageStack, 0);
+        getHardStack(brownCardsData, 'brown', firstStageStack, 0);
+        getHardStack(blueCardsData, 'blue', firstStageStack, 0);
+        
+        getHardStack(greenCardsData, 'green', secondStageStack, 1);
+        getHardStack(brownCardsData, 'brown', secondStageStack, 1);
+        getHardStack(blueCardsData, 'blue', secondStageStack, 1);
+       
+        getHardStack(greenCardsData, 'green', thirdStageStack, 2);
+        getHardStack(brownCardsData, 'brown', thirdStageStack, 2);
+        getHardStack(blueCardsData, 'blue', thirdStageStack, 2);
     }
 });
 
@@ -199,7 +235,6 @@ shuffleButton.addEventListener('click', () => {
     firstStageCardsNumber = cardsNumber[0].green + cardsNumber[0].brown + cardsNumber[0].blue;
     secondStageCardsNumber = cardsNumber[1].green + cardsNumber[1].brown + cardsNumber[1].blue;
     thirdStageCardsNumber = cardsNumber[2].green + cardsNumber[2].brown + cardsNumber[2].blue;
-    console.log(fullStack);
 })
 
 const deck = document.querySelector('.deck');
@@ -215,7 +250,6 @@ const getCardFromStack = () => {
         currentCardContainer.style.backgroundImage = `url(${currentCard.cardFace})`;
         deck.classList.add('inactive');
     }
-    
 }
 
 const updateCounter = () => {
