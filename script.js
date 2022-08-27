@@ -55,6 +55,29 @@ const getCardsNumberByAncient = (ancientNum) => {
     });  
 }
 
+const getCounter = () => {
+    const stg1G = document.querySelector('#stg-1-g');
+    const stg1Br = document.querySelector('#stg-1-br');
+    const stg1Bl = document.querySelector('#stg-1-bl');
+    const stg2G = document.querySelector('#stg-2-g');
+    const stg2Br = document.querySelector('#stg-2-br');
+    const stg2Bl = document.querySelector('#stg-2-bl');
+    const stg3G = document.querySelector('#stg-3-g');
+    const stg3Br = document.querySelector('#stg-3-br');
+    const stg3Bl = document.querySelector('#stg-3-bl');
+
+    stg1G.textContent = cardsNumber[0].green;
+    stg1Bl.textContent = cardsNumber[0].blue;
+    stg1Br.textContent = cardsNumber[0].brown;
+    stg2G.textContent = cardsNumber[1].green;
+    stg2Bl.textContent = cardsNumber[1].blue;
+    stg2Br.textContent = cardsNumber[1].brown;
+    stg3G.textContent = cardsNumber[2].green;
+    stg3Bl.textContent = cardsNumber[2].blue;
+    stg3Br.textContent = cardsNumber[2].brown;
+
+}
+
 const getStackByDifficulty = (cardsData, color, stageStack, stageNum) => {
     if (cardsNumber[stageNum][color] !== 0) {
         let counter = 1;
@@ -84,6 +107,7 @@ pickAncient.addEventListener('click', (event) => {
         gameContainer.classList.remove('inactive');
         
         getCardsNumberByAncient(event.target.id);
+        getCounter();
         console.log(cardsNumber);       
     }
 })
