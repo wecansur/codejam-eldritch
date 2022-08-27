@@ -96,10 +96,11 @@ const getStackByDifficulty = (cardsData, color, stageStack, stageNum) => {
 }
 
 const pickAncient = document.querySelector('.pick-ancient');
-const currentAncient = document.querySelector('.current-ancient');
-const gameContainer = document.querySelector('.game-container');
+
 
 pickAncient.addEventListener('click', (event) => {
+    const currentAncient = document.querySelector('.current-ancient');
+    const gameContainer = document.querySelector('.game-container');
     if (event.target.className === 'card ancient') {
         pickAncient.classList.add('inactive');
         currentAncient.classList.remove('inactive');
@@ -135,10 +136,9 @@ difficultyContainer.addEventListener('click', (event) => {
     }
 });
 
-const cardsContainer = document.querySelector('.cards-container');
-const counterContainer = document.querySelector('.counter-container');
-
 shuffleButton.addEventListener('click', () => {
+    const cardsContainer = document.querySelector('.cards-container');
+    const counterContainer = document.querySelector('.counter-container');
     cardsContainer.classList.remove('inactive');
     counterContainer.classList.remove('inactive');
 
