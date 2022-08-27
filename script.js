@@ -33,6 +33,7 @@ const cardsNumber = [];
 const firstStageStack = [];
 const secondStageStack = [];
 const thirdStageStack = [];
+let fullStack = [];
 
 const getCardsNumberByAncient = (ancientNum) => {
     
@@ -95,8 +96,13 @@ const getStackByDifficulty = (cardsData, color, stageStack, stageNum) => {
     }
 }
 
-const pickAncient = document.querySelector('.pick-ancient');
+const getFullStack = (stack1, stack2, stack3 ) => {
+    const temp = stack3.concat(stack2);
+    const result = temp.concat(stack1);
+    return result;
+}
 
+const pickAncient = document.querySelector('.pick-ancient');
 
 pickAncient.addEventListener('click', (event) => {
     const currentAncient = document.querySelector('.current-ancient');
@@ -148,6 +154,29 @@ shuffleButton.addEventListener('click', () => {
     console.log(firstStageStack);
     console.log(secondStageStack);
     console.log(thirdStageStack);
+
+    fullStack = getFullStack(firstStageStack, secondStageStack, thirdStageStack);
+    console.log(fullStack);
 })
 
-const currentCard = document.querySelector('.current-card');
+const deck = document.querySelector('.deck');
+
+const getCardFromStack = () => {
+    const currentCardContainer = document.querySelector('.current-card');
+    let currentCard;
+    if (!(fullStack.length === 1)) {
+        currentCard = fullStack.pop();
+        currentCardContainer.style.backgroundImage = `url(${currentCard.cardFace})`;
+        console.log(fullStack);
+    } else {
+        currentCard = fullStack.pop();
+        currentCardContainer.style.backgroundImage = `url(${currentCard.cardFace})`;
+        deck.classList.add('inactive');
+        console.log(fullStack);
+    }
+    
+}
+
+deck.addEventListener('click', () => {
+    getCardFromStack();
+})
