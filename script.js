@@ -31,69 +31,48 @@ const shuffleStack = (array) => {
     }
     return array; 
 }
-
+const cardsNumber = [];
 const firstStageStack = [];
 const secondStageStack = [];
 const thirdStageStack = [];
 
-const getStackByAncient = (ancientNum) => {
+const getCardsNumberByAncient = (ancientNum) => {
     
-    const cardsNumber = [
-        {
-            green: ancientsData[ancientNum].firstStage.greenCards,
-            brown: ancientsData[ancientNum].firstStage.brownCards,
-            blue: ancientsData[ancientNum].firstStage.blueCards
-        },
-        {
+    cardsNumber.push({
+        green: ancientsData[ancientNum].firstStage.greenCards,
+        brown: ancientsData[ancientNum].firstStage.brownCards,
+        blue: ancientsData[ancientNum].firstStage.blueCards
+    });
+        
+    cardsNumber.push({
             green: ancientsData[ancientNum].secondStage.greenCards,
             brown: ancientsData[ancientNum].secondStage.brownCards,
             blue: ancientsData[ancientNum].secondStage.blueCards
-        },
-        {
-            green: ancientsData[ancientNum].thirdStage.greenCards,
-            brown: ancientsData[ancientNum].thirdStage.brownCards,
-            blue: ancientsData[ancientNum].thirdStage.blueCards
-        }
-    ]   
+        });
 
-    const getCards = (cardsData, color, stageStack, stageNum) => {
-        if (cardsNumber[stageNum][color] !== 0) {
-            let counter = 1;
-            while (counter <= cardsNumber[stageNum][color]) {
-                const randomCard = [];
-                cardsData.map((item, index, array) => {
-                    randomCard.push(array[getRandomNum(0, cardsData.length - 1)]);
-                })
-    
-                if (!(firstStageStack.includes(randomCard[0])) && !(secondStageStack.includes(randomCard[0])) && !(thirdStageStack.includes(randomCard[0]))) {
-                    stageStack.push(randomCard[0]);
-                    counter++;
-                }
+    cardsNumber.push({
+        green: ancientsData[ancientNum].thirdStage.greenCards,
+        brown: ancientsData[ancientNum].thirdStage.brownCards,
+        blue: ancientsData[ancientNum].thirdStage.blueCards
+    });  
+}
+
+const getStackByDificulty = (cardsData, color, stageStack, stageNum) => {
+    if (cardsNumber[stageNum][color] !== 0) {
+        let counter = 1;
+        while (counter <= cardsNumber[stageNum][color]) {
+            const randomCard = [];
+            cardsData.map((item, index, array) => {
+                randomCard.push(array[getRandomNum(0, cardsData.length - 1)]);
+            })
+
+            if (!(firstStageStack.includes(randomCard[0])) && !(secondStageStack.includes(randomCard[0])) && !(thirdStageStack.includes(randomCard[0]))) {
+                stageStack.push(randomCard[0]);
+                counter++;
             }
         }
     }
-
-    getCards(greenCardsData, 'green', firstStageStack, 0);
-    getCards(brownCardsData, 'brown', firstStageStack, 0);
-    getCards(blueCardsData, 'blue', firstStageStack, 0);
-    shuffleStack(firstStageStack);
-    
-    getCards(greenCardsData, 'green', secondStageStack, 1);
-    getCards(brownCardsData, 'brown', secondStageStack, 1);
-    getCards(blueCardsData, 'blue', secondStageStack, 1);
-    shuffleStack(secondStageStack);
-
-    getCards(greenCardsData, 'green', thirdStageStack, 2);
-    getCards(brownCardsData, 'brown', thirdStageStack, 2);
-    getCards(blueCardsData, 'blue', thirdStageStack, 2);
-    shuffleStack(thirdStageStack);
-
-    console.log(firstStageStack);
-    console.log(secondStageStack);
-    console.log(thirdStageStack);
 }
-
-
 
 const ancientsContainer = document.querySelector('.ancients-container');
 
@@ -106,8 +85,37 @@ ancientsContainer.addEventListener('click', (event) => {
 
         event.target.classList.add('ancient-active');
         
-        getStackByAncient(event.target.id);       
+        getCardsNumberByAncient(event.target.id);
+        console.log(cardsNumber)       
     }
 
 })
-   
+
+const difficultyContainer = document.querySelector('.difficulty-container');
+
+difficultyContainer.addEventListener('click', (event) => {
+    if(event.target.className === 'difficulty normal') {
+        event.target.classList.add('difficulty-active');
+        getStackByDificulty(greenCardsData, 'green', firstStageStack, 0);
+        getStackByDificulty(brownCardsData, 'brown', firstStageStack, 0);
+        getStackByDificulty(blueCardsData, 'blue', firstStageStack, 0);
+        
+        getStackByDificulty(greenCardsData, 'green', secondStageStack, 1);
+        getStackByDificulty(brownCardsData, 'brown', secondStageStack, 1);
+        getStackByDificulty(blueCardsData, 'blue', secondStageStack, 1);
+       
+        getStackByDificulty(greenCardsData, 'green', thirdStageStack, 2);
+        getStackByDificulty(brownCardsData, 'brown', thirdStageStack, 2);
+        getStackByDificulty(blueCardsData, 'blue', thirdStageStack, 2);
+    }
+});
+
+const shuffleButton = document.querySelector('.shuffle');
+shuffleButton.addEventListener('click', () => {
+    shuffleStack(firstStageStack);
+    shuffleStack(secondStageStack);
+    shuffleStack(thirdStageStack);
+    console.log(firstStageStack);
+    console.log(secondStageStack);
+    console.log(thirdStageStack);
+})

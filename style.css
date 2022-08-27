@@ -40,7 +40,12 @@ body {
     margin-top: 10px;
 }
 
-.dificulty-container {
+.buttons-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.difficulty-container {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -48,7 +53,7 @@ body {
     height: 300px;
 }
 
-.dificulty {
+.difficulty {
     width: 120px;
     color: #ffffff;
     border-color: #ff0000;
@@ -56,7 +61,11 @@ body {
     cursor: pointer;
 }
 
-.dificulty:hover {
+.difficulty:hover {
+    background-color: #ff0000;
+}
+
+.difficulty-active {
     background-color: #ff0000;
 }
 
