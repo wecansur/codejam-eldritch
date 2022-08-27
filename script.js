@@ -56,17 +56,19 @@ const getCardsNumberByAncient = (ancientNum) => {
     });  
 }
 
-const getCounter = () => {
-    const stg1G = document.querySelector('#stg-1-g');
-    const stg1Br = document.querySelector('#stg-1-br');
-    const stg1Bl = document.querySelector('#stg-1-bl');
-    const stg2G = document.querySelector('#stg-2-g');
-    const stg2Br = document.querySelector('#stg-2-br');
-    const stg2Bl = document.querySelector('#stg-2-bl');
-    const stg3G = document.querySelector('#stg-3-g');
-    const stg3Br = document.querySelector('#stg-3-br');
-    const stg3Bl = document.querySelector('#stg-3-bl');
+const stg1G = document.querySelector('#stg-1-g');
+const stg1Br = document.querySelector('#stg-1-br');
+const stg1Bl = document.querySelector('#stg-1-bl');
+const stg2G = document.querySelector('#stg-2-g');
+const stg2Br = document.querySelector('#stg-2-br');
+const stg2Bl = document.querySelector('#stg-2-bl');
+const stg3G = document.querySelector('#stg-3-g');
+const stg3Br = document.querySelector('#stg-3-br');
+const stg3Bl = document.querySelector('#stg-3-bl');
 
+const stageLabels = document.querySelectorAll('.stage-label');
+
+const getCounter = () => {
     stg1G.textContent = cardsNumber[0].green;
     stg1Bl.textContent = cardsNumber[0].blue;
     stg1Br.textContent = cardsNumber[0].brown;
@@ -76,7 +78,8 @@ const getCounter = () => {
     stg3G.textContent = cardsNumber[2].green;
     stg3Bl.textContent = cardsNumber[2].blue;
     stg3Br.textContent = cardsNumber[2].brown;
-
+    
+    stageLabels[0].classList.add('stage-active');
 }
 
 const getStackByDifficulty = (cardsData, color, stageStack, stageNum) => {
@@ -114,8 +117,7 @@ pickAncient.addEventListener('click', (event) => {
         gameContainer.classList.remove('inactive');
         
         getCardsNumberByAncient(event.target.id);
-        getCounter();
-        console.log(cardsNumber);       
+        getCounter();       
     }
 })
 
@@ -142,6 +144,10 @@ difficultyContainer.addEventListener('click', (event) => {
     }
 });
 
+let firstStageCardsNumber;
+let secondStageCardsNumber;
+let thirdStageCardsNumber;
+
 shuffleButton.addEventListener('click', () => {
     const cardsContainer = document.querySelector('.cards-container');
     const counterContainer = document.querySelector('.counter-container');
@@ -151,19 +157,19 @@ shuffleButton.addEventListener('click', () => {
     shuffleStack(firstStageStack);
     shuffleStack(secondStageStack);
     shuffleStack(thirdStageStack);
-    console.log(firstStageStack);
-    console.log(secondStageStack);
-    console.log(thirdStageStack);
 
     fullStack = getFullStack(firstStageStack, secondStageStack, thirdStageStack);
-    console.log(fullStack);
+
+    firstStageCardsNumber = cardsNumber[0].green + cardsNumber[0].brown + cardsNumber[0].blue;
+    secondStageCardsNumber = cardsNumber[1].green + cardsNumber[1].brown + cardsNumber[1].blue;
+    thirdStageCardsNumber = cardsNumber[2].green + cardsNumber[2].brown + cardsNumber[2].blue;
 })
 
 const deck = document.querySelector('.deck');
-
+let currentCard;
 const getCardFromStack = () => {
     const currentCardContainer = document.querySelector('.current-card');
-    let currentCard;
+    
     if (!(fullStack.length === 1)) {
         currentCard = fullStack.pop();
         currentCardContainer.style.backgroundImage = `url(${currentCard.cardFace})`;
@@ -177,6 +183,57 @@ const getCardFromStack = () => {
     
 }
 
+const updateCounter = () => {
+    if (fullStack.length >= (secondStageCardsNumber + thirdStageCardsNumber)) {
+        if (currentCard.color === 'green') {
+            let greenCardsNumber = stg1G.textContent;
+            greenCardsNumber--;
+            stg1G.textContent = greenCardsNumber;
+        } else if (currentCard.color === 'brown') {
+            let brownCardsNumber = stg1Br.textContent;
+            brownCardsNumber--;
+            stg1Br.textContent = brownCardsNumber;
+        } else if (currentCard.color === 'blue') {
+            let blueCardsNumber = stg1Bl.textContent;
+            blueCardsNumber--;
+            stg1Bl.textContent = blueCardsNumber;
+        }
+    } else if ((fullStack.length >= (thirdStageCardsNumber)) && (fullStack.length < (secondStageCardsNumber + thirdStageCardsNumber)) ) {
+        stageLabels[0].classList.remove('stage-active');
+        stageLabels[1].classList.add('stage-active');
+        if (currentCard.color === 'green') {
+            let greenCardsNumber = stg2G.textContent;
+            greenCardsNumber--;
+            stg2G.textContent = greenCardsNumber;
+        } else if (currentCard.color === 'brown') {
+            let brownCardsNumber = stg2Br.textContent;
+            brownCardsNumber--;
+            stg2Br.textContent = brownCardsNumber;
+        } else if (currentCard.color === 'blue') {
+            let blueCardsNumber = stg2Bl.textContent;
+            blueCardsNumber--;
+            stg2Bl.textContent = blueCardsNumber;
+        }
+    } else if (fullStack.length <= thirdStageCardsNumber) {
+        stageLabels[1].classList.remove('stage-active');
+        stageLabels[2].classList.add('stage-active');
+        if (currentCard.color === 'green') {
+            let greenCardsNumber = stg3G.textContent;
+            greenCardsNumber--;
+            stg3G.textContent = greenCardsNumber;
+        } else if (currentCard.color === 'brown') {
+            let brownCardsNumber = stg3Br.textContent;
+            brownCardsNumber--;
+            stg3Br.textContent = brownCardsNumber;
+        } else if (currentCard.color === 'blue') {
+            let blueCardsNumber = stg3Bl.textContent;
+            blueCardsNumber--;
+            stg3Bl.textContent = blueCardsNumber;
+        }
+    }
+}
+
 deck.addEventListener('click', () => {
     getCardFromStack();
+    updateCounter();
 })

@@ -134,6 +134,10 @@ body {
     background-color: #0000ff;
 }
 
+.stage-active {
+    color: #ff0000;
+}
+
 .inactive {
     display: none;
 }
