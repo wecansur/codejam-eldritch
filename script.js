@@ -164,13 +164,16 @@ pickAncient.addEventListener('click', (event) => {
 })
 
 const difficultyContainer = document.querySelector('.difficulty-container');
-
+const difficultyInfo = document.querySelector('.difficulty-info');
 const shuffleButton = document.querySelector('.shuffle');
+const reloadButton = document.querySelector('.reload');
 
-difficultyContainer.addEventListener('click', (event) => {
+difficultyContainer.addEventListener('click', (event) => {  
     if(event.target.className === 'difficulty normal') {
         event.target.classList.add('difficulty-active');
         shuffleButton.classList.remove('inactive');
+        difficultyContainer.classList.add('inactive');
+        difficultyInfo.textContent = 'Средний уровень сложности';
 
         getNormalStack(greenCardsData, 'green', firstStageStack, 0);
         getNormalStack(brownCardsData, 'brown', firstStageStack, 0);
@@ -186,6 +189,8 @@ difficultyContainer.addEventListener('click', (event) => {
     } else if (event.target.className === 'difficulty easy') {
         event.target.classList.add('difficulty-active');
         shuffleButton.classList.remove('inactive');
+        difficultyContainer.classList.add('inactive');
+        difficultyInfo.textContent = 'Легкий уровень сложности';
 
         getEasyStack(greenCardsData, 'green', firstStageStack, 0);
         getEasyStack(brownCardsData, 'brown', firstStageStack, 0);
@@ -201,6 +206,8 @@ difficultyContainer.addEventListener('click', (event) => {
     } else if (event.target.className === 'difficulty hard') {
         event.target.classList.add('difficulty-active');
         shuffleButton.classList.remove('inactive');
+        difficultyContainer.classList.add('inactive');
+        difficultyInfo.textContent = 'Трудный уровень сложности';
 
         getHardStack(greenCardsData, 'green', firstStageStack, 0);
         getHardStack(brownCardsData, 'brown', firstStageStack, 0);
@@ -216,7 +223,6 @@ difficultyContainer.addEventListener('click', (event) => {
     }
 });
 
-let firstStageCardsNumber;
 let secondStageCardsNumber;
 let thirdStageCardsNumber;
 
@@ -225,6 +231,8 @@ shuffleButton.addEventListener('click', () => {
     const counterContainer = document.querySelector('.counter-container');
     cardsContainer.classList.remove('inactive');
     counterContainer.classList.remove('inactive');
+    shuffleButton.classList.add('inactive');
+    reloadButton.classList.remove('inactive');
 
     shuffleStack(firstStageStack);
     shuffleStack(secondStageStack);
@@ -232,7 +240,6 @@ shuffleButton.addEventListener('click', () => {
 
     fullStack = getFullStack(firstStageStack, secondStageStack, thirdStageStack);
 
-    firstStageCardsNumber = cardsNumber[0].green + cardsNumber[0].brown + cardsNumber[0].blue;
     secondStageCardsNumber = cardsNumber[1].green + cardsNumber[1].brown + cardsNumber[1].blue;
     thirdStageCardsNumber = cardsNumber[2].green + cardsNumber[2].brown + cardsNumber[2].blue;
 })
@@ -305,4 +312,8 @@ const updateCounter = () => {
 deck.addEventListener('click', () => {
     getCardFromStack();
     updateCounter();
+})
+
+reloadButton.addEventListener('click', () => {
+    location.reload()
 })
