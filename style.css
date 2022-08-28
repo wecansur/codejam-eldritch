@@ -9,7 +9,11 @@ body {
     
 }
 
-.ancients-container {
+.current-ancient {
+    margin: 50px auto 0 auto;
+}
+
+.pick-ancient{
     display: flex;
     justify-content: space-around;
     margin-top: 50px;
@@ -27,23 +31,7 @@ body {
 }
 
 .ancient:hover {
-    border: 2px solid #00ff00;
-}
-
-.azathoth {
-    background-image: url(./assets/Ancients/Azathoth.png);
-}
-
-.cthulthu {
-    background-image: url(./assets/Ancients/Cthulthu.png);
-}
-
-.jog-sothoth {
-    background-image: url(./assets/Ancients/IogSothoth.png);
-}
-
-.shub-niggurath {
-    background-image: url(./assets/Ancients/ShubNiggurath.png);
+    border: 2px solid #ff0000;
 }
 
 .game-container {
@@ -52,15 +40,23 @@ body {
     margin-top: 10px;
 }
 
-.dificulty-container {
+.buttons-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 200px;
+}
+
+.difficulty-container {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    align-items: center;
     width: 200px;
     height: 300px;
 }
 
-.dificulty {
+.difficulty {
     width: 120px;
     color: #ffffff;
     border-color: #ff0000;
@@ -68,8 +64,17 @@ body {
     cursor: pointer;
 }
 
-.dificulty:hover {
+.difficulty:hover {
     background-color: #ff0000;
+}
+
+.difficulty-active {
+    background-color: #ff0000;
+}
+
+.difficulty-info {
+    margin-top: 50px;
+    color: #ffffff;
 }
 
 .shuffle {
@@ -77,8 +82,19 @@ body {
     margin-top: 50px;
     color: #4d1919;
     background-color: #b55e5e;
+    border: none;
     cursor: pointer;
-} 
+}
+
+.reload {
+    width: 120px;
+    padding: 8px;
+    margin-top: 50px;
+    color: #ffffff;
+    background-color: #23ad48;
+    border: none;
+    cursor: pointer;
+}
 
 .cards-container {
     display: flex;
@@ -100,7 +116,6 @@ body {
 
 .current-card {
     margin-top: 10px;
-    background-image: url(./assets/MythicCards/blue/blue1.png);
 }
 
 .counter-container {
@@ -128,10 +143,18 @@ body {
     background-color: #00ff00;
 }
 
-.red {
-    background-color: #ff0000;
+.brown {
+    background-color: #a52a2a;
 }
 
 .blue {
     background-color: #0000ff;
+}
+
+.stage-active {
+    color: #ff0000;
+}
+
+.inactive {
+    display: none;
 }

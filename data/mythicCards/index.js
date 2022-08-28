@@ -1,5 +1,5 @@
 import brownCards from './brown';
-import blueCards from './blue';
+import blueCards from './blue/';
 import greenCards from './green';
 
 export {
