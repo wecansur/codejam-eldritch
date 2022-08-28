@@ -313,7 +313,6 @@ deck.addEventListener('click', () => {
     getCardFromStack();
     updateCounter();
 })
-
 reloadButton.addEventListener('click', () => {
     location.reload()
 })
