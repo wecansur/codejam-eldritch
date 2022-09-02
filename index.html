@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eldritch Horror</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="ancients-container">
+        <div class="pick-ancient">
+            <div class="card ancient" id="0"></div>
+            <div class="card ancient" id="1"></div>
+            <div class="card ancient" id="2"></div>
+            <div class="card ancient" id="3"></div>
+        </div>
+    <div class="card current-ancient inactive"></div>
+    </div>
+
+    <div class="game-container inactive">
+        <div class="buttons-container">
+            <div class="difficulty-container">
+                <button class="difficulty v-easy inactive">Очень легко</button>
+                <button class="difficulty easy">Легко</button>
+                <button class="difficulty normal">Средне</button>
+                <button class="difficulty hard">Трудно</button>
+                <button class="difficulty v-hard inactive">Очень трудно</button>
+            </div>
+                <div class="difficulty-info"></div>
+                <button class="shuffle inactive">Замешать колоду</button>
+                <button class="reload inactive">Начать сначала</button>
+        </div>
+        
+        <div class="cards-container inactive">
+            <div class="card deck"></div>
+            <div class="card current-card"></div>
+        </div>
+
+        <div class="counter-container inactive">
+            <div class="stage">
+                <p class="stage-label">Первая стадия</p>
+                <div class="counter-item">
+                    <span class="counter green" id="stg-1-g"></span>
+                    <span class="counter brown" id="stg-1-br"></span>
+                    <span class="counter blue" id="stg-1-bl"></span>
+                </div>
+            </div>
+
+            <div class="stage">
+                <p class="stage-label">Вторая стадия</p>
+                <div class="counter-item">
+                    <span class="counter green" id="stg-2-g"></span>
+                    <span class="counter brown" id="stg-2-br"></span>
+                    <span class="counter blue" id="stg-2-bl"></span>
+                </div>
+            </div>
+
+            <div class="stage">
+                <p class="stage-label">Третья стадия</p>
+                <div class="counter-item">
+                    <span class="counter green" id="stg-3-g"></span>
+                    <span class="counter brown" id="stg-3-br"></span>
+                    <span class="counter blue" id="stg-3-bl"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="./script.js"></script>
+</body>
+</html>
