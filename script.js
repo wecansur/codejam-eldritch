@@ -142,8 +142,7 @@ const getHardStack = (cardsData, color, stageStack, stageNum) => {
     }
 
 const getFullStack = (stack1, stack2, stack3 ) => {
-    const temp = stack3.concat(stack2);
-    const result = temp.concat(stack1);
+    const result = [...stack3, ...stack2, ...stack1];
     return result;
 }
 
